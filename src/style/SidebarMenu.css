@@ -1,0 +1,24 @@
+.sidebarMenu {
+  padding: 5px 16px; 
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sidebarMenu:hover {
+  background-color: #350D36;
+}
+
+.sidebarMenu > .MuiSvgIcon-root {
+  padding-right: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.sidebarMenu > span {
+  font-size: 15px;
+}
+
+.bold-menu {
+  font-size: bold !important;
+}

@@ -48,9 +48,22 @@
   justify-content: space-between;
   padding-right: 16px;
   padding-left: 32px;
+  position: relative;
+}
+
+.header__right > .online__status {
+  position: absolute;
+  right: 15px;
+  bottom: 0;
+  background-color: var(--primary-color);
+  border-radius: 999px;
+  height: 13px;
+  width: 13px;
+
 }
 
 .header__avatar {
   height: 30px !important;
   width: 30px !important;
+  background-color: #350D36;
 }

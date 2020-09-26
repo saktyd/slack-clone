@@ -1,9 +1,11 @@
 import React from 'react'
 import '../style/Header.css'
-import { Avatar } from '@material-ui/core'
+// import { Avatar } from '@material-ui/core'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import SearchIcon from '@material-ui/icons/Search'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
+import PersonIcon from '@material-ui/icons/Person';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 function Header() {
   return (
@@ -17,7 +19,8 @@ function Header() {
       </div>
       <div className="header__right">
         <HelpOutlineIcon/>
-        <Avatar className="header__avatar" alt="avatarUser"></Avatar>
+        <PersonIcon className="header__avatar" alt="avatarUser"></PersonIcon>
+        <FiberManualRecordIcon className="online__status"/>
       </div>
     </div>
   )
