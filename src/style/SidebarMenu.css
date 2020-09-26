@@ -15,6 +15,10 @@
   width: 16px;
 }
 
+.sidebarMenu > .hastag {
+   padding-right: 10px;
+}
+
 .sidebarMenu > span {
   font-size: 15px;
 }

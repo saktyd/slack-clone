@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../style/Sidebar.css'
 import SidebarMenu from './SidebarMenu'
+import { db } from '../firebase'
 // icon
 import SubjectIcon from '@material-ui/icons/Subject';
 import CreateIcon from '@material-ui/icons/Create';
@@ -14,6 +15,7 @@ import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined';
 
 function Sidebar() {
+
   const menuList = [
     { icon: SubjectIcon, title: 'All unreads' },
     { icon: CommentOutlinedIcon, title: 'Threads' },
@@ -24,6 +26,21 @@ function Sidebar() {
     { icon: MoreVertOutlinedIcon, title: 'More' },
     { icon: ArrowDropDownOutlinedIcon, title: 'Channels', style: {marginBottom: '10px'}, className: 'bold-menu' },
   ]
+
+  const [channels, setChannels] = useState([])
+
+  useEffect(() => {
+    // run when sidebar component loading
+    db.collection('rooms').onSnapshot( snapshot => {
+      setChannels(
+        snapshot.docs.map(doc => ({
+          id: doc.id,
+          name: doc.data().name,  
+        }))
+      )
+    })
+  }, [])
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -37,11 +54,12 @@ function Sidebar() {
         </button>
       </div>
       <div style={{paddingTop: '10px', paddingBottom: '10px'}}>
-        { menuList.map((item, index) => {
-          return (
-            <SidebarMenu key={index} Icon={item.icon} title={item.title} style={item.style} className={item.className} />
-            )
-        }) }
+        { menuList.map((item, index) => (
+          <SidebarMenu key={index} Icon={item.icon} title={item.title} style={item.style} className={item.className} />
+        ))}
+        { channels.map( channel => (
+          <SidebarMenu key={channel.id}  title={channel.name} id={channel.id} />
+        )) }
       </div>
     </div>
   )
