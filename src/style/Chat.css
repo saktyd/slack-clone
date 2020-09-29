@@ -1,0 +1,30 @@
+.chat {
+  width: 100%;
+  overflow-y: auto;
+  padding-bottom: 86px;
+}
+
+.chat__header {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.chat__header--left , .chat__header--right {
+  display: flex;
+  align-items: center;
+}
+
+.chat__header--left > .MuiSvgIcon-root {
+  font-size: 15px;
+  padding-left: 5px;
+}
+
+.chat__header--right > .MuiSvgIcon-root {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+

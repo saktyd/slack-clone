@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../style/Sidebar.css'
 import SidebarMenu from './SidebarMenu'
 import { db } from '../firebase'
+import { useStateValue } from '../stateProvider'
 // icon
 import SubjectIcon from '@material-ui/icons/Subject';
 import CreateIcon from '@material-ui/icons/Create';
@@ -13,8 +14,11 @@ import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountO
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined';
+import AddIcon from '@material-ui/icons/Add';
 
 function Sidebar() {
+
+  const [{user}] = useStateValue()
 
   const menuList = [
     { icon: SubjectIcon, title: 'All unreads' },
@@ -24,7 +28,7 @@ function Sidebar() {
     { icon: SupervisorAccountOutlinedIcon, title: 'Mentions & reactions' },
     { icon: BookmarkBorderOutlinedIcon, title: 'Saved Items' },
     { icon: MoreVertOutlinedIcon, title: 'More' },
-    { icon: ArrowDropDownOutlinedIcon, title: 'Channels', style: {marginBottom: '10px'}, className: 'bold-menu' },
+    { icon: ArrowDropDownOutlinedIcon, title: 'Channels', addChannel: AddIcon, className: 'channel-menu' },
   ]
 
   const [channels, setChannels] = useState([])
@@ -47,7 +51,7 @@ function Sidebar() {
         <h2>Slack Clone</h2>
         <h5 className="sidebar__info">
           <ArrowDropDownIcon/>
-          Sakti Dewantoro
+          {user?.displayName}
         </h5>
         <button className="sidebar__create--icon">
           <CreateIcon/>
@@ -55,10 +59,10 @@ function Sidebar() {
       </div>
       <div style={{paddingTop: '10px', paddingBottom: '10px'}}>
         { menuList.map((item, index) => (
-          <SidebarMenu key={index} Icon={item.icon} title={item.title} style={item.style} className={item.className} />
+          <SidebarMenu key={index} Icon={item.icon} title={item.title} AddChannelOption={item.addChannel} style={item.style} className={item.className} />
         ))}
         { channels.map( channel => (
-          <SidebarMenu key={channel.id}  title={channel.name} id={channel.id} />
+          <SidebarMenu key={channel.id} title={channel.name} type={'channel'} id={channel.id} />
         )) }
       </div>
     </div>

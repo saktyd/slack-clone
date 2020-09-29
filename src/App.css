@@ -5,4 +5,5 @@ body {
 
 .slack__body {
   height: 100vh;
+  display: flex;
 }

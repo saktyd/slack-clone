@@ -1,13 +1,16 @@
 import React from 'react'
 import '../style/Header.css'
-// import { Avatar } from '@material-ui/core'
+import { Avatar } from '@material-ui/core'
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import SearchIcon from '@material-ui/icons/Search'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
-import PersonIcon from '@material-ui/icons/Person';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import { useStateValue } from '../stateProvider'
 
 function Header() {
+
+  const [{user}] = useStateValue()
+
   return (
     <div className="header">
       <div className="header__left">
@@ -19,8 +22,8 @@ function Header() {
       </div>
       <div className="header__right">
         <HelpOutlineIcon/>
-        <PersonIcon className="header__avatar" alt="avatarUser"></PersonIcon>
-        <FiberManualRecordIcon className="online__status"/>
+        <Avatar className="header__avatar" alt={user?.displayName} src={user?.photoURL}></Avatar>
+        <FiberManualRecordIcon className={user?.photoURL ? 'active online__status' : 'online__status'}/>
       </div>
     </div>
   )

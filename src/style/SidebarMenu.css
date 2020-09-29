@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
 }
 
 .sidebarMenu:hover {
@@ -15,14 +16,23 @@
   width: 16px;
 }
 
+.add__channel {
+  position: absolute;
+  padding: 0 !important;
+  right: 16px;
+  cursor: pointer;
+}
+
 .sidebarMenu > .hastag {
-   padding-right: 10px;
+  padding-right: 10px;
+  padding-left: 24px;
 }
 
 .sidebarMenu > span {
   font-size: 15px;
 }
 
-.bold-menu {
-  font-size: bold !important;
+.channel-menu {
+  font-weight: bold !important;
+  margin: 10px 0px 5px 0px;
 }
