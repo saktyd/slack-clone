@@ -1,11 +1,40 @@
 import React from 'react'
 import '../style/Header.css'
-import { Avatar } from '@material-ui/core'
+import { Avatar, Badge } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import SearchIcon from '@material-ui/icons/Search'
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline'
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import { useStateValue } from '../stateProvider'
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px #3f0f40`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: '$ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}))(Badge);
 
 function Header() {
 
@@ -22,8 +51,16 @@ function Header() {
       </div>
       <div className="header__right">
         <HelpOutlineIcon/>
-        <Avatar className="header__avatar" alt={user?.displayName} src={user?.photoURL}></Avatar>
-        <FiberManualRecordIcon className={user?.photoURL ? 'active online__status' : 'online__status'}/>
+        <StyledBadge
+          overlap="circle"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          variant="dot"
+        >
+          <Avatar className="header__avatar" alt={user?.displayName} src={user?.photoURL} />
+        </StyledBadge>
       </div>
     </div>
   )

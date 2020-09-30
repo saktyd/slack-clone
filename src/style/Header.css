@@ -51,20 +51,6 @@
   position: relative;
 }
 
-.header__right > .online__status {
-  position: absolute;
-  right: 15px;
-  bottom: 0;
-  background-color: var(--primary-color);
-  border-radius: 999px;
-  height: 13px;
-  width: 13px;
-}
-
-.active {
-  color: #1e9611 !important;
-}
-
 .header__avatar {
   height: 30px !important;
   width: 30px !important;

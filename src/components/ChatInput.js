@@ -21,7 +21,6 @@ function ChatInput({ channelName, channelId }) {
     }
 
     setInput('')
-    console.log('test', inputValue);
   }
 
   return (
