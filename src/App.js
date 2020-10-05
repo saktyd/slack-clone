@@ -9,22 +9,20 @@ import { useStateValue } from './stateProvider'
 
 function App() {
 
-  const [{user}, dispatch] = useStateValue()
+  const [{isAuthenticated}, dispatch] = useStateValue()
 
   return (
     <div className="slack">
       <Router>
         {
-          !user ? (<Login/>) : (
+          !isAuthenticated ? (<Login/>) : (
           <>
             <Header/>
             <div className="slack__body">
               <Sidebar/>
               <Switch>
-                <Route path="/room/:roomId">
-                  <Chat/>
-                </Route>
-                <Route path="/">
+                <Route path="/room/:roomId" component={Chat} />
+                <Route exact path="/">
                   <h2>Welcome</h2>
                 </Route>
               </Switch>

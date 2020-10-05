@@ -4,6 +4,7 @@ import { Button } from '@material-ui/core'
 import { auth, provider } from '../firebase'
 import { useStateValue } from '../stateProvider'
 import { actionTypes } from '../reducer'
+import browserStorage from '../browserStorage'
 
 function Login() {
 
@@ -11,9 +12,12 @@ function Login() {
   
   const loginWithGoogle = () => {
     auth.signInWithPopup(provider).then((result) => {
+      browserStorage.setKey('isAuthenticated', true)
+      browserStorage.setKey('profile', result.additionalUserInfo.profile)
+
       dispatch({
         type: actionTypes.SET_USER,
-        user: result.user
+        userProfile: result.additionalUserInfo.profile
       })
     }).catch((error) => {
       alert(error)

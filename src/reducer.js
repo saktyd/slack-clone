@@ -1,5 +1,7 @@
+
 export const initialState = {
-  user: null
+  userProfile: JSON.parse(localStorage.getItem('profile')) || null,
+  isAuthenticated: localStorage.getItem('isAuthenticated') || false,
 }
 
 export const actionTypes = {
@@ -11,7 +13,8 @@ const reducer = (state, action) => {
     case actionTypes.SET_USER: 
       return {
         ...state,
-        user: action.user
+        userProfile: action.userProfile,
+        isAuthenticated: true,
       }
     default:
       return state

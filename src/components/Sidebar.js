@@ -18,7 +18,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 function Sidebar() {
 
-  const [{user}] = useStateValue()
+  const [{userProfile}] = useStateValue()
 
   const menuList = [
     { icon: SubjectIcon, title: 'All unreads' },
@@ -51,7 +51,7 @@ function Sidebar() {
         <h2>Slack Clone</h2>
         <h5 className="sidebar__info">
           <ArrowDropDownIcon/>
-          {user?.displayName}
+          {userProfile?.name}
         </h5>
         <button className="sidebar__create--icon">
           <CreateIcon/>

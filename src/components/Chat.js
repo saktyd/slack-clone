@@ -13,6 +13,12 @@ function Chat() {
   const [roomDetails, setRoomDetails] = useState(null)
   const [roomMessages, setRoomMessages] = useState([])
 
+  const scrollToEnd = () => {
+    const container = document.querySelector('.chat__message');
+    const { scrollHeight } = container;
+    container.scrollTop = scrollHeight;
+  }
+
   useEffect(() => {
     if (roomId) {
       db.collection('rooms')
@@ -29,8 +35,10 @@ function Chat() {
       .onSnapshot(snapshot => (
         setRoomMessages(
           snapshot.docs.map(doc => doc.data())
-        )
+        ),
+        scrollToEnd()
       ))
+    
   }, [roomId])
 
   return (
@@ -44,12 +52,17 @@ function Chat() {
           <InfoOutlinedIcon />
         </div>
       </div>
-      <div className="chat__message">
-        { roomMessages.map(({userImage, createdAt, message, userName}, index) => (
-          <Message key={index} userImage={userImage} time={createdAt} message={message} userName={userName} />
-        )) }
-        <ChatInput channelName={roomDetails?.name} channelId={roomId}/>
-      </div>
+      { roomMessages && roomMessages.length > 0 ? (
+        <>
+          <div className="chat__message">
+            { roomMessages.map(({userImage, createdAt, message, userName}, index) => (
+              <Message key={index} userImage={userImage} time={createdAt} message={message} userName={userName} />
+            )) }
+          </div>
+          <ChatInput channelName={roomDetails?.name} channelId={roomId} scrollToEnd={scrollToEnd}/>
+        </>
+      ) : (<> </>) }
+      
     </div>
   )
 }

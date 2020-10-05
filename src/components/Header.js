@@ -38,7 +38,7 @@ const StyledBadge = withStyles((theme) => ({
 
 function Header() {
 
-  const [{user}] = useStateValue()
+  const [{userProfile}] = useStateValue()
 
   return (
     <div className="header">
@@ -59,7 +59,7 @@ function Header() {
           }}
           variant="dot"
         >
-          <Avatar className="header__avatar" alt={user?.displayName} src={user?.photoURL} />
+          <Avatar className="header__avatar" alt={userProfile?.name} src={userProfile?.picture} />
         </StyledBadge>
       </div>
     </div>
