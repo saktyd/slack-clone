@@ -4,12 +4,12 @@ import { useParams } from 'react-router-dom'
 import { db } from '../firebase'
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import Message from '../components/Message'
-import ChatInput from '../components/ChatInput'
+import Message from './Message'
+import ChatInput from './ChatInput'
 
 function Chat() {
 
-  const { roomId } = useParams()
+  const { clientId } = useParams()
   const [roomDetails, setRoomDetails] = useState(null)
   const [roomMessages, setRoomMessages] = useState([])
 
@@ -20,16 +20,16 @@ function Chat() {
   }
 
   useEffect(() => {
-    if (roomId) {
+    if (clientId) {
       db.collection('rooms')
-        .doc(roomId)
+        .doc(clientId)
         .onSnapshot(snapshot => (
         setRoomDetails(snapshot.data())
       ))
     }
     
     db.collection('rooms')
-      .doc(roomId)
+      .doc(clientId)
       .collection('messages')
       .orderBy('createdAt', 'asc')
       .onSnapshot(snapshot => (
@@ -38,8 +38,7 @@ function Chat() {
         ),
         scrollToEnd()
       ))
-    
-  }, [roomId])
+  }, [clientId])
 
   return (
     <div className="chat">
@@ -59,7 +58,7 @@ function Chat() {
               <Message key={index} userImage={userImage} time={createdAt} message={message} userName={userName} />
             )) }
           </div>
-          <ChatInput channelName={roomDetails?.name} channelId={roomId} scrollToEnd={scrollToEnd}/>
+          <ChatInput channelName={roomDetails?.name} channelId={clientId} scrollToEnd={scrollToEnd}/>
         </>
       ) : (<> </>) }
       

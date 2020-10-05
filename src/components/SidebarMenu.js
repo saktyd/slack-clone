@@ -8,7 +8,7 @@ function SidebarMenu( {Icon, title, className, id, type, AddChannelOption} ) {
 
   const selectChannel = () => {
     if (id) {
-      history.push(`/room/${id}`)
+      history.push(`/client/${id}`)
     } else {
       history.push(title)
     }
