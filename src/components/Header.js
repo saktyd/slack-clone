@@ -23,6 +23,7 @@ const StyledBadge = withStyles((theme) => ({
       border: '1px solid currentColor',
       content: '""',
     },
+    right: '4%',
   },
   '@keyframes ripple': {
     '0%': {
@@ -36,7 +37,7 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-function Header() {
+function Header({profileToggle, isShowProfile}) {
 
   const [{userProfile}] = useStateValue()
   const [anchorEl, setAnchorEl] = useState(null);
@@ -48,6 +49,13 @@ function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleProfile = () => {
+    if (!isShowProfile) {
+      profileToggle()
+    }
+    handleClose()
+  }
 
   const signOutUser = () => {
     handleClose()
@@ -85,6 +93,7 @@ function Header() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={() => { handleProfile(); handleClose(); }}>Profile</MenuItem>
         <MenuItem onClick={signOutUser}>Sign out</MenuItem>
       </Menu>
     </div>
