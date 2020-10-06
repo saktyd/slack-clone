@@ -1,0 +1,18 @@
+.home {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.home > h1 {
+  padding-top: 30px;
+  color: var(--primary-color);;
+}
+
+.home > span > b {
+  color: var(--primary-color);
+}
+
+span {
+  line-height: 1.5;
+}
