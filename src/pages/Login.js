@@ -35,9 +35,15 @@ function Login() {
       { !isAuthenticated ? (
         <div className="login">
           <div className="login__container">
-            <img src="https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png" alt=""/>
-            <h1>Welcome to Slack Clone</h1>
-            <Button onClick={loginWithGoogle}>Sign In with Google</Button>
+            <div className="login__container--header">
+              <img src="https://a.slack-edge.com/80588/marketing/img/icons/icon_slack_hash_colored.png" height="30px" alt=""/>
+              <h1>Slack</h1>
+            </div>  
+            <h1>Sign In to Slack Clone</h1>   
+            <span>by Sakti Dewantoro</span>
+            <Button onClick={loginWithGoogle}>
+              <img src="https://www.iconfinder.com/data/icons/social-media-2210/24/Google-512.png" alt=""/>
+              Sign In with Google</Button>
           </div>
         </div>
       ) : (<Redirect to={{ pathname: '/' }} /> ) }
