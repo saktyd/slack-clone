@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function MainApp() {
 
-  const [isShowProfile, setShowProfile] = useState(true)
+  const [isShowProfile, setShowProfile] = useState(false)
 
   const profileToggle = () => {
     setShowProfile(!isShowProfile)
