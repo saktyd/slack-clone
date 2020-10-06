@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../style/Header.css'
-import { Avatar, Badge } from '@material-ui/core'
+import { Avatar, Badge, Menu, MenuItem } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 import AccessTimeIcon from '@material-ui/icons/AccessTime'
 import SearchIcon from '@material-ui/icons/Search'
@@ -39,6 +39,21 @@ const StyledBadge = withStyles((theme) => ({
 function Header() {
 
   const [{userProfile}] = useStateValue()
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const signOutUser = () => {
+    handleClose()
+    localStorage.clear()
+    window.location.href = '/login'
+  }
 
   return (
     <div className="header">
@@ -59,9 +74,19 @@ function Header() {
           }}
           variant="dot"
         >
-          <Avatar className="header__avatar" alt={userProfile?.name} src={userProfile?.picture} />
+          <Avatar className="header__avatar" type="button" onClick={handleClick} alt={userProfile?.name} src={userProfile?.picture} />
         </StyledBadge>
       </div>
+
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={signOutUser}>Sign out</MenuItem>
+      </Menu>
     </div>
   )
 }
