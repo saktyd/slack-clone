@@ -1,0 +1,31 @@
+.profile {
+  flex: 0.3;
+  width: 400px;
+  height: 100%;
+  background-color: white;
+  border-left: 1px solid lightgray;
+}
+
+.profile__header {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+}
+
+.profile__header > .MuiSvgIcon-root {
+  cursor: pointer !important;
+  opacity: 0.5;
+}
+
+.profile__header > .MuiSvgIcon-root:hover {
+  border-radius: 3px;
+  background-color: rgb(245, 244, 245);
+  
+  box-shadow:  0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.profile__header > strong {
+  font-size: 16px;
+}

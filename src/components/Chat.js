@@ -51,17 +51,12 @@ function Chat() {
           <InfoOutlinedIcon />
         </div>
       </div>
-      { roomMessages && roomMessages.length > 0 ? (
-        <>
-          <div className="chat__message">
-            { roomMessages.map(({userImage, createdAt, message, userName}, index) => (
-              <Message key={index} userImage={userImage} time={createdAt} message={message} userName={userName} />
-            )) }
-          </div>
-          <ChatInput channelName={roomDetails?.name} channelId={clientId} scrollToEnd={scrollToEnd}/>
-        </>
-      ) : (<> </>) }
-      
+      <div className="chat__message">
+        { roomMessages.map(({userImage, createdAt, message, userName}, index) => (
+          <Message key={index} userImage={userImage} time={createdAt} message={message} userName={userName} />
+        )) }
+      </div>
+      <ChatInput channelName={roomDetails?.name} channelId={clientId} scrollToEnd={scrollToEnd}/>
     </div>
   )
 }
