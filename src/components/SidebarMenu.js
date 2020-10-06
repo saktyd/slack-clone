@@ -3,14 +3,14 @@ import { db } from '../firebase'
 import '../style/SidebarMenu.css'
 import { useHistory } from 'react-router-dom'
 
-function SidebarMenu( {Icon, title, className, id, type, AddChannelOption} ) {
+function SidebarMenu( {Icon, title, className, id, AddChannelOption} ) {
   const history = useHistory()
 
   const selectChannel = () => {
     if (id) {
       history.push(`/client/${id}`)
     } else {
-      history.push(title)
+      history.push('/')
     }
   }
 

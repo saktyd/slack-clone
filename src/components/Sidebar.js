@@ -4,16 +4,9 @@ import SidebarMenu from './SidebarMenu'
 import { db } from '../firebase'
 import { useStateValue } from '../stateProvider'
 // icon
-import SubjectIcon from '@material-ui/icons/Subject';
 import CreateIcon from '@material-ui/icons/Create';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
-import QuestionAnswerOutlinedIcon from '@material-ui/icons/QuestionAnswerOutlined';
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
-import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
-import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ArrowDropDownOutlinedIcon from '@material-ui/icons/ArrowDropDownOutlined';
+import HomeIcon from '@material-ui/icons/Home';
 import AddIcon from '@material-ui/icons/Add';
 
 function Sidebar() {
@@ -21,13 +14,7 @@ function Sidebar() {
   const [{userProfile}] = useStateValue()
 
   const menuList = [
-    { icon: SubjectIcon, title: 'All unreads' },
-    { icon: CommentOutlinedIcon, title: 'Threads' },
-    { icon: QuestionAnswerOutlinedIcon, title: 'All DMs' },
-    { icon: DescriptionOutlinedIcon, title: 'Drafts' },
-    { icon: SupervisorAccountOutlinedIcon, title: 'Mentions & reactions' },
-    { icon: BookmarkBorderOutlinedIcon, title: 'Saved Items' },
-    { icon: MoreVertOutlinedIcon, title: 'More' },
+    { icon: HomeIcon, title: 'Home'},
     { icon: ArrowDropDownOutlinedIcon, title: 'Channels', addChannel: AddIcon, className: 'channel-menu' },
   ]
 
@@ -48,9 +35,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        <h2>Slack Clone</h2>
         <h5 className="sidebar__info">
-          <ArrowDropDownIcon/>
           {userProfile?.name}
         </h5>
         <button className="sidebar__create--icon">
